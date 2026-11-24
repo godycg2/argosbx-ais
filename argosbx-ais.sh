@@ -12,6 +12,29 @@
 # list、res、upx、upa、del
 # ============================================================
 
+
+# ============================================================
+# 配置 Debian/dpkg 无交互模式
+# ============================================================
+
+echo "配置 Debian/dpkg 自动确认"
+
+export DEBIAN_FRONTEND=noninteractive
+export DEBIAN_PRIORITY=critical
+
+mkdir -p "$WORK/apt-conf"
+
+cat > "$WORK/apt-conf/99argosbx-noninteractive" <<'EOF'
+Dpkg::Options {
+    "--force-confold";
+    "--force-confdef";
+};
+EOF
+
+export APT_CONFIG="$WORK/apt-conf/99argosbx-noninteractive"
+
+echo "dpkg 配置冲突自动处理：保留当前配置文件"
+
 set -Ee
 
 BASE="$HOME/agsbx"
@@ -351,7 +374,7 @@ mkdir -p "$WORK"
 
 title "下载官方 Argosbx"
 
-curl -fLsS "$OFFICIAL_URL" -o "$WORK/argosbx.sh"
+#curl -fLsS "$OFFICIAL_URL" -o "$WORK/argosbx.sh"
 chmod +x "$WORK/argosbx.sh"
 
 echo "官方脚本：$WORK/argosbx.sh"
