@@ -374,7 +374,7 @@ mkdir -p "$WORK"
 
 title "下载官方 Argosbx"
 
-#curl -fLsS "$OFFICIAL_URL" -o "$WORK/argosbx.sh"
+curl -fLsS "$OFFICIAL_URL" -o "$WORK/argosbx.sh"
 chmod +x "$WORK/argosbx.sh"
 
 echo "官方脚本：$WORK/argosbx.sh"
