@@ -12,6 +12,19 @@
 # list、res、upx、upa、del
 # ============================================================
 
+set -Ee
+
+BASE="$HOME/agsbx"
+WORK="$HOME/argosbx-idx-work"
+OFFICIAL_URL="https://raw.githubusercontent.com/godycg2/argosbx/main/argosbx.sh"
+
+UUID="${uuid:-dfd8c497-a3cc-4c1d-859b-0d15411ecc35}"
+VMESS_PORT="${vmpt:-${VMESS_PORT:-22388}}"
+ARGO_MODE="${argo:-vmpt}"
+ARGO_DOMAIN="${agn:-${ARGO_DOMAIN:-}}"
+ARGO_TOKEN="${agk:-${ARGO_AUTH:-}}"
+NODE_NAME="${name:-IDX-Argosbx-VMess}"
+
 
 # ============================================================
 # 配置 Debian/dpkg 无交互模式
@@ -34,19 +47,6 @@ EOF
 export APT_CONFIG="$WORK/apt-conf/99argosbx-noninteractive"
 
 echo "dpkg 配置冲突自动处理：保留当前配置文件"
-
-set -Ee
-
-BASE="$HOME/agsbx"
-WORK="$HOME/argosbx-idx-work"
-OFFICIAL_URL="https://raw.githubusercontent.com/godycg2/argosbx/main/argosbx.sh"
-
-UUID="${uuid:-dfd8c497-a3cc-4c1d-859b-0d15411ecc35}"
-VMESS_PORT="${vmpt:-${VMESS_PORT:-22388}}"
-ARGO_MODE="${argo:-vmpt}"
-ARGO_DOMAIN="${agn:-${ARGO_DOMAIN:-}}"
-ARGO_TOKEN="${agk:-${ARGO_AUTH:-}}"
-NODE_NAME="${name:-IDX-Argosbx-VMess}"
 
 # 支持直接传入 key=value 参数
 for arg in "$@"; do
